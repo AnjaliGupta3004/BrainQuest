@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "835766735050",
+    "firebase_url": "https://brainquest-e90a6-default-rtdb.firebaseio.com",
+    "project_id": "brainquest-e90a6",
+    "storage_bucket": "brainquest-e90a6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835766735050:android:169f8a6e4245c11313a433",
+        "android_client_info": {
+          "package_name": "com.brainquest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0JMyXXd7VqYqjpTdueHEFc6phhBw1J4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
