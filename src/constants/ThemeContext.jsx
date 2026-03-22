@@ -6,6 +6,8 @@ import { PASTEL, NEON } from '../constants/colors';
 
 const ThemeContext = createContext();
 
+
+
 export const ThemeProvider = ({ children }) => {
   const [isDark, setIsDark] = useState(false);
   const theme = isDark ? NEON : PASTEL;
