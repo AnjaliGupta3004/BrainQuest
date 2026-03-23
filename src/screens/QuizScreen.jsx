@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet,
-  SafeAreaView, StatusBar, Animated, ScrollView,
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, Animated, ScrollView,
 } from 'react-native';
 import { useTheme } from '../constants/ThemeContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function QuizScreen({ route, navigation }) {
   const { theme, isDark } = useTheme();

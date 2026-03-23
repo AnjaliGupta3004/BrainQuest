@@ -9,7 +9,7 @@ import HomeScreen   from './src/screens/HomeScreen';
 import SearchScreen from './src/screens/SearchScreen';
 import QuizScreen   from './src/screens/QuizScreen';
 import BattleScreen from './src/screens/BattleScreen';
-//import ResultScreen from './src/screens/ResultScreen';
+import ResultScreen from './src/screens/ResultScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,10 +25,11 @@ export default function App() {
           <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="Quiz"   component={QuizScreen} />
                 <Stack.Screen name="Battle" component={BattleScreen} />
+                  <Stack.Screen name="Result" component={ResultScreen} />
         {/* 
         
       
-          <Stack.Screen name="Result" component={ResultScreen} />*/}
+        */}
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

@@ -2,11 +2,10 @@
 
 import React, { useState ,useEffect } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet,
-  SafeAreaView, StatusBar, ScrollView,
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
 } from 'react-native';
 import { useTheme } from '../constants/ThemeContext';
-import { testGemini } from '../services/geminiService';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MOODS = [
   { emoji: '😴', label: 'Tired',   difficulty: 'easy',   count: 3  },
@@ -24,7 +23,6 @@ export default function HomeScreen({ navigation }) {
 
 
   useEffect(() => {
-  testGemini();
 }, []);
   return (
     <SafeAreaView style={s.root}>

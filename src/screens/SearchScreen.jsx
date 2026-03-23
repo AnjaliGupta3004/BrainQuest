@@ -3,12 +3,13 @@
 import React, { useState } from 'react';
 import {
   View, Text, TextInput, TouchableOpacity, FlatList,
-  ActivityIndicator, StyleSheet, SafeAreaView,
+  ActivityIndicator, StyleSheet,
   StatusBar, Image, Alert,
 } from 'react-native';
 import { useTheme } from '../constants/ThemeContext';
 import { searchBooks } from '../services/libraryService';
-import { generateQuiz } from '../services/geminiService';
+import { generateQuiz } from '../services/aiService';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SUGGESTIONS = ['Physics', 'History', 'Python', 'Biology', 'Math', 'Chemistry'];
 

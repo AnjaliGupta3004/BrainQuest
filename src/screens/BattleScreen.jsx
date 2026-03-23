@@ -2,12 +2,13 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, TextInput, TouchableOpacity, StyleSheet,
-  SafeAreaView, StatusBar, ActivityIndicator,
+  View, Text, TextInput, TouchableOpacity, StyleSheet, StatusBar, ActivityIndicator,
   Alert, ScrollView, Clipboard,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 import { useTheme } from '../constants/ThemeContext';
-import { generateQuiz } from '../services/geminiService';
+import { generateQuiz } from '../services/aiService';
 import {
   generateRoomCode, createRoom, joinRoom,
   listenToRoom, submitAnswer, markDone, deleteRoom,

@@ -2,11 +2,11 @@
 
 import React, { useEffect } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet,
-  SafeAreaView, StatusBar, ScrollView,
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../constants/ThemeContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ResultScreen({ route, navigation }) {
   const { theme, isDark } = useTheme();
