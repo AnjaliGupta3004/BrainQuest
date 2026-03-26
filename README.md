@@ -1,97 +1,155 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# BrainQuest 🧠⚡
 
-# Getting Started
+An AI-powered quiz application built with React Native CLI for Android.
+Search any topic, get AI-generated MCQs instantly, and challenge
+friends in real-time Battle Mode.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+- **Mood-based Quiz** — 5 mood levels that adapt quiz difficulty and
+  question count automatically
+- **AI Quiz Generation** — Groq AI (LLaMA 3.3 70B) generates unique
+  MCQs for any topic instantly
+- **Open Library Search** — Search millions of books and topics with
+  cover images
+- **Real-time Battle Mode** — Challenge friends to a live quiz duel
+  with Firebase sync
+- **Dual Theme** — Soft Pastel (day) + Neon Dark (night) with
+  persistent toggle
+- **Offline History** — Last 20 quiz scores saved locally with
+  AsyncStorage
+- **XP System** — Speed bonus points, medals, and XP earned per quiz
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+---
 
-```sh
-# Using npm
-npm start
+## Tech Stack
 
-# OR using Yarn
-yarn start
+| Technology | Purpose |
+|---|---|
+| React Native CLI | Core framework (Android) |
+| Groq AI API | MCQ generation (LLaMA 3.3 70B) |
+| Open Library API | Book & topic search (free, no key) |
+| Firebase Realtime DB | Battle mode live sync |
+| React Navigation v6 | Screen navigation |
+| AsyncStorage | Offline score history |
+| react-native-dotenv | Secure API key management |
+| React Context API | Global theme state |
+
+---
+
+## Screens
+
+| Screen | Description |
+|---|---|
+| Home | Mood picker, theme toggle, battle entry |
+| Search | Topic search via Open Library API |
+| Quiz | MCQs, countdown timer, XP, feedback |
+| Battle | Real-time quiz vs friend via Firebase |
+| Result | Score, XP, medals, question review |
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v18+
+- Android Studio + Android SDK
+- JDK 17
+- React Native CLI
+
+### Installation
+```bash
+# Clone the repo
+git clone https://github.com/AnjaliGupta3004/BrainQuest.git
+cd BrainQuest
+
+# Install dependencies
+npm install
+
+# Create .env file
+cp .env.example .env
+# Add your API keys in .env
 ```
 
-## Step 2: Build and run your app
+### Environment Variables
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
-
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+Create a `.env` file in root:
+```
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_URL=https://api.groq.com/openai/v1/chat/completions
+OPEN_LIBRARY_URL=https://openlibrary.org/search.json
 ```
 
-### iOS
+Get free Groq API key from: https://console.groq.com
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
+### Run the App
+```bash
+# Terminal 1 — Start Metro
+npx react-native start
 
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+# Terminal 2 — Run on Android
+npx react-native run-android
 ```
 
-Then, and every time you update your native dependencies, run:
+---
 
-```sh
-bundle exec pod install
+## Project Structure
+```
+BrainQuest/
+├── src/
+│   ├── constants/
+│   │   └── colors.js          # Pastel + Neon theme colors
+│   ├── context/
+│   │   └── ThemeContext.jsx   # Global theme state
+│   ├── services/
+│   │   ├── aiService.js       # Groq AI quiz generation
+│   │   ├── libraryService.js  # Open Library API
+│   │   └── firebaseService.js # Battle mode Firebase
+│   └── screens/
+│       ├── HomeScreen.jsx     # Mood picker + navigation
+│       ├── SearchScreen.jsx   # Topic search
+│       ├── QuizScreen.jsx     # Main quiz screen
+│       ├── BattleScreen.jsx   # Real-time battle
+│       └── ResultScreen.jsx   # Score + review
+├── .env                       # API keys (not committed)
+├── .env.example               # Template for env vars
+└── App.jsx                    # Root navigator
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+---
 
-```sh
-# Using npm
-npm run ios
+## API Usage
 
-# OR using Yarn
-yarn ios
+| API | Cost | Usage |
+|---|---|---|
+| Groq AI | Free (14,400 req/day) | Quiz generation |
+| Open Library | Free (no key) | Book search |
+| Firebase | Free (Spark plan) | Battle mode |
+
+---
+
+## Developer
+
+**Anjali Gupta**
+B.Tech 3rd Year | Android & React Native Developer
+Specializing in Native Kotlin + React Native + Tailwind CSS
+
+---
+
+## License
+
+MIT License — feel free to use and modify!
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+---
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+## `.env.example` file bhi banao
 
-## Step 3: Modify your app
-
-Now that you have successfully run the app, let's make changes!
-
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
-
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
-
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+Root mein `.env.example` file banao — yeh GitHub par push hogi:
+```
+GROQ_API_KEY=your_groq_api_key_here
+GROQ_URL=https://api.groq.com/openai/v1/chat/completions
+OPEN_LIBRARY_URL=https://openlibrary.org/search.json

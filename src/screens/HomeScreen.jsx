@@ -112,6 +112,7 @@ export default function HomeScreen({ navigation }) {
           </Text>
         </TouchableOpacity>
 
+
         <Text style={[s.footer, { color: theme.textMuted }]}>
           Powered by Gemini AI + Open Library
         </Text>
