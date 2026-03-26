@@ -146,9 +146,9 @@ MIT License — feel free to use and modify!
 
 ---
 
-## `.env.example` file bhi banao
+## `.env.example` Create
 
-Root mein `.env.example` file banao — yeh GitHub par push hogi:
+Root mein `.env.example` 
 ```
 GROQ_API_KEY=your_groq_api_key_here
 GROQ_URL=https://api.groq.com/openai/v1/chat/completions
