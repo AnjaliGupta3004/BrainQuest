@@ -6,6 +6,8 @@ import {
   ActivityIndicator, StyleSheet,
   StatusBar, Image, Alert,
 } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 import { useTheme } from '../constants/ThemeContext';
 import { searchBooks } from '../services/libraryService';
 import { generateQuiz } from '../services/aiService';
@@ -17,11 +19,11 @@ export default function SearchScreen({ route, navigation }) {
   const { theme, isDark } = useTheme();
   const mood = route.params?.mood || { emoji: '😎', label: 'Focused', difficulty: 'medium', count: 5 };
 
-  const [query,      setQuery]      = useState('');
-  const [results,    setResults]    = useState([]);
-  const [searching,  setSearching]  = useState(false);
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState([]);
+  const [searching, setSearching] = useState(false);
   const [generating, setGenerating] = useState(false);
-  const [genTopic,   setGenTopic]   = useState('');
+  const [genTopic, setGenTopic] = useState('');
 
   const s = makeStyles(theme);
 
@@ -41,7 +43,7 @@ export default function SearchScreen({ route, navigation }) {
       const questions = await generateQuiz(item.subject || item.title, mood.difficulty, mood.count);
       navigation.navigate('Quiz', { questions, topic: item.title, mood });
     } catch (e) {
-      Alert.alert('Error', 'Quiz generate nahi hua. API key check karo.');
+Alert.alert('Error', 'Quiz was not generated. Check your API key.');
     } finally {
       setGenerating(false);
     }
@@ -67,7 +69,11 @@ export default function SearchScreen({ route, navigation }) {
 
       <View style={s.header}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={[s.back, { color: theme.primary }]}>←</Text>
+          <Ionicons
+            name="arrow-back"
+            size={24}
+            color={theme.primary}   // ← theme color automatically!
+          />
         </TouchableOpacity>
         <View style={{ flex: 1, marginLeft: 12 }}>
           <Text style={s.title}>Choose a topic</Text>
@@ -140,29 +146,36 @@ export default function SearchScreen({ route, navigation }) {
 }
 
 const makeStyles = (theme) => StyleSheet.create({
-  root      : { flex: 1, backgroundColor: theme.background },
-  center    : { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
-  header    : { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 12 },
-  back      : { fontSize: 24, fontWeight: '700' },
-  title     : { fontSize: 22, fontWeight: '700', color: theme.text },
-  sub       : { fontSize: 13, color: theme.textMuted, marginTop: 2 },
-  searchBox : { flexDirection: 'row', marginHorizontal: 20, marginBottom: 14, borderRadius: 14, overflow: 'hidden', borderWidth: 1, borderColor: theme.border, backgroundColor: theme.card },
-  input     : { flex: 1, paddingHorizontal: 14, paddingVertical: 13, fontSize: 15, color: theme.text },
-  goBtn     : { paddingHorizontal: 18, justifyContent: 'center' },
-  goBtnTxt  : { color: '#fff', fontWeight: '700', fontSize: 14 },
+  root: { flex: 1, backgroundColor: theme.background },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  header: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 12 },
+  back: { fontSize: 24, fontWeight: '700' },
+  title: { fontSize: 22, fontWeight: '700', color: theme.text },
+  sub: { fontSize: 13, color: theme.textMuted, marginTop: 2 },
+  searchBox: { flexDirection: 'row', marginHorizontal: 20, marginBottom: 14, borderRadius: 14, overflow: 'hidden', borderWidth: 1, borderColor: theme.border, backgroundColor: theme.card },
+  input: { flex: 1, paddingHorizontal: 14, paddingVertical: 13, fontSize: 15, color: theme.text },
+  goBtn: { paddingHorizontal: 18, justifyContent: 'center' },
+  goBtnTxt: { color: '#fff', fontWeight: '700', fontSize: 14 },
   suggestRow: { flexDirection: 'row', flexWrap: 'wrap', paddingHorizontal: 20, gap: 8, marginBottom: 16 },
-  chip      : { borderRadius: 20, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 6 },
-  chipTxt   : { fontSize: 13, fontWeight: '600' },
-  loadTxt   : { marginTop: 12, fontSize: 14 },
-  card      : { flexDirection: 'row', borderRadius: 14, borderWidth: 1, padding: 12, marginBottom: 10 },
-  cover     : { width: 56, height: 76, borderRadius: 8, marginRight: 12 },
-  coverPh   : { width: 56, height: 76, borderRadius: 8, marginRight: 12, justifyContent: 'center', alignItems: 'center' },
-  cardRight : { flex: 1, justifyContent: 'center' },
-  cardTitle : { fontSize: 15, fontWeight: '600', marginBottom: 4 },
+  chip: { borderRadius: 20, borderWidth: 1, paddingHorizontal: 12, paddingVertical: 6 },
+  chipTxt: { fontSize: 13, fontWeight: '600' },
+  loadTxt: { marginTop: 12, fontSize: 14 },
+  card: { flexDirection: 'row', borderRadius: 14, borderWidth: 1, padding: 12, marginBottom: 10 },
+  cover: { width: 56, height: 76, borderRadius: 8, marginRight: 12 },
+  coverPh: { width: 56, height: 76, borderRadius: 8, marginRight: 12, justifyContent: 'center', alignItems: 'center' },
+  cardRight: { flex: 1, justifyContent: 'center' },
+  cardTitle: { fontSize: 15, fontWeight: '600', marginBottom: 4 },
   cardAuthor: { fontSize: 12, marginBottom: 8 },
-  subPill   : { alignSelf: 'flex-start', borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
+  subPill: { alignSelf: 'flex-start', borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3 },
   subPillTxt: { fontSize: 11, fontWeight: '600' },
-  genTitle  : { fontSize: 20, fontWeight: '700', color: theme.text, textAlign: 'center', marginTop: 16, marginBottom: 8 },
-  genSub    : { fontSize: 14, color: theme.textMuted, textAlign: 'center', marginBottom: 12 },
-  genMood   : { fontSize: 13, fontWeight: '600' },
+  genTitle: { fontSize: 20, fontWeight: '700', color: theme.text, textAlign: 'center', marginTop: 16, marginBottom: 8 },
+  genSub: { fontSize: 14, color: theme.textMuted, textAlign: 'center', marginBottom: 12 },
+  genMood: { fontSize: 13, fontWeight: '600' },
+  backBtn: { 
+  padding: 8, 
+  borderRadius: 20,
+  backgroundColor: theme.card,
+  borderWidth: 1,
+  borderColor: theme.border,
+},
 });

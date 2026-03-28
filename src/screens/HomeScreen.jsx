@@ -1,6 +1,6 @@
 // src/screens/HomeScreen.jsx
 
-import React, { useState ,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
 } from 'react-native';
@@ -8,11 +8,11 @@ import { useTheme } from '../constants/ThemeContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const MOODS = [
-  { emoji: '😴', label: 'Tired',   difficulty: 'easy',   count: 3  },
-  { emoji: '😊', label: 'Chill',   difficulty: 'easy',   count: 5  },
-  { emoji: '😎', label: 'Focused', difficulty: 'medium', count: 7  },
-  { emoji: '🔥', label: 'Pumped',  difficulty: 'hard',   count: 10 },
-  { emoji: '⚡', label: 'Beast',   difficulty: 'hard',   count: 15 },
+  { emoji: '😴', label: 'Tired', difficulty: 'easy', count: 3 },
+  { emoji: '😊', label: 'Chill', difficulty: 'easy', count: 5 },
+  { emoji: '😎', label: 'Focused', difficulty: 'medium', count: 7 },
+  { emoji: '🔥', label: 'Pumped', difficulty: 'hard', count: 10 },
+  { emoji: '⚡', label: 'Beast', difficulty: 'hard', count: 15 },
 ];
 
 export default function HomeScreen({ navigation }) {
@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
 
 
   useEffect(() => {
-}, []);
+  }, []);
   return (
     <SafeAreaView style={s.root}>
       <StatusBar
@@ -45,8 +45,8 @@ export default function HomeScreen({ navigation }) {
 
         {/* Mood card */}
         <View style={s.card}>
-          <Text style={s.cardTitle}>Aaj kaisa feel ho raha hai? 🤔</Text>
-          <Text style={s.cardSub}>Mood ke hisaab se quiz adjust hoga</Text>
+          <Text style={s.cardTitle}>How are you feeling today? 🤔</Text>
+          <Text style={s.cardSub}>The quiz will adjust based on your mood</Text>
 
           <View style={s.moodRow}>
             {MOODS.map((m, i) => (
@@ -122,29 +122,29 @@ export default function HomeScreen({ navigation }) {
 }
 
 const makeStyles = (theme) => StyleSheet.create({
-  root     : { flex: 1, backgroundColor: theme.background },
-  scroll   : { paddingHorizontal: 20, paddingBottom: 40 },
-  topBar   : { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: 20, marginBottom: 28 },
-  logo     : { fontSize: 30, fontWeight: '800', color: theme.primary },
-  tagline  : { fontSize: 13, color: theme.textMuted, marginTop: 2 },
-  themeBtn : { padding: 10, borderRadius: 22, backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border },
-  card     : { backgroundColor: theme.card, borderRadius: 18, borderWidth: 1, borderColor: theme.border, padding: 20, marginBottom: 18 },
+  root: { flex: 1, backgroundColor: theme.background },
+  scroll: { paddingHorizontal: 20, paddingBottom: 40 },
+  topBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: 20, marginBottom: 28 },
+  logo: { fontSize: 30, fontWeight: '800', color: theme.primary },
+  tagline: { fontSize: 13, color: theme.textMuted, marginTop: 2 },
+  themeBtn: { padding: 10, borderRadius: 22, backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border },
+  card: { backgroundColor: theme.card, borderRadius: 18, borderWidth: 1, borderColor: theme.border, padding: 20, marginBottom: 18 },
   cardTitle: { fontSize: 16, fontWeight: '700', color: theme.text, marginBottom: 4 },
-  cardSub  : { fontSize: 13, color: theme.textMuted, marginBottom: 18 },
-  moodRow  : { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 },
-  moodBtn  : { alignItems: 'center', borderRadius: 14, borderWidth: 1, borderColor: theme.border, paddingVertical: 10, paddingHorizontal: 8, width: 58 },
+  cardSub: { fontSize: 13, color: theme.textMuted, marginBottom: 18 },
+  moodRow: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 16 },
+  moodBtn: { alignItems: 'center', borderRadius: 14, borderWidth: 1, borderColor: theme.border, paddingVertical: 10, paddingHorizontal: 8, width: 58 },
   moodEmoji: { fontSize: 26, marginBottom: 5 },
   moodLabel: { fontSize: 11, color: theme.textMuted, fontWeight: '500' },
-  pillRow  : { flexDirection: 'row', gap: 8 },
-  pill     : { borderRadius: 20, paddingHorizontal: 12, paddingVertical: 5 },
-  pillTxt  : { fontSize: 12, fontWeight: '600' },
-  statsRow : { flexDirection: 'row', gap: 10, marginBottom: 18 },
-  statCard : { flex: 1, borderRadius: 14, padding: 14, alignItems: 'center', borderWidth: 1 },
-  statNum  : { fontSize: 24, fontWeight: '800' },
-  statLbl  : { fontSize: 12, marginTop: 2 },
-  startBtn : { borderRadius: 16, paddingVertical: 17, alignItems: 'center', marginBottom: 12 },
-  startTxt : { color: '#fff', fontSize: 17, fontWeight: '700' },
+  pillRow: { flexDirection: 'row', gap: 8 },
+  pill: { borderRadius: 20, paddingHorizontal: 12, paddingVertical: 5 },
+  pillTxt: { fontSize: 12, fontWeight: '600' },
+  statsRow: { flexDirection: 'row', gap: 10, marginBottom: 18 },
+  statCard: { flex: 1, borderRadius: 14, padding: 14, alignItems: 'center', borderWidth: 1 },
+  statNum: { fontSize: 24, fontWeight: '800' },
+  statLbl: { fontSize: 12, marginTop: 2 },
+  startBtn: { borderRadius: 16, paddingVertical: 17, alignItems: 'center', marginBottom: 12 },
+  startTxt: { color: '#fff', fontSize: 17, fontWeight: '700' },
   battleBtn: { borderRadius: 16, paddingVertical: 15, alignItems: 'center', borderWidth: 1.5, marginBottom: 28 },
   battleTxt: { fontSize: 15, fontWeight: '700' },
-  footer   : { textAlign: 'center', fontSize: 12 },
+  footer: { textAlign: 'center', fontSize: 12 },
 });

@@ -6,7 +6,7 @@ import {
   Alert, ScrollView, Clipboard,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useTheme } from '../constants/ThemeContext';
 import { generateQuiz } from '../services/aiService';
 import {
@@ -15,28 +15,28 @@ import {
 } from '../services/firebaseService';
 
 const PHASE = {
-  LOBBY  : 'LOBBY',
+  LOBBY: 'LOBBY',
   WAITING: 'WAITING',
-  BATTLE : 'BATTLE',
-  RESULT : 'RESULT',
+  BATTLE: 'BATTLE',
+  RESULT: 'RESULT',
 };
 
 export default function BattleScreen({ navigation }) {
   const { theme, isDark } = useTheme();
 
-  const [phase,      setPhase]      = useState(PHASE.LOBBY);
+  const [phase, setPhase] = useState(PHASE.LOBBY);
   const [playerName, setPlayerName] = useState('');
-  const [topic,      setTopic]      = useState('');
-  const [joinCode,   setJoinCode]   = useState('');
-  const [roomCode,   setRoomCode]   = useState('');
-  const [role,       setRole]       = useState('');
-  const [roomData,   setRoomData]   = useState(null);
-  const [loading,    setLoading]    = useState(false);
-  const [qIdx,       setQIdx]       = useState(0);
-  const [selected,   setSelected]   = useState(null);
-  const [answered,   setAnswered]   = useState(false);
-  const [timeLeft,   setTimeLeft]   = useState(15);
-  const [myScore,    setMyScore]    = useState(0);
+  const [topic, setTopic] = useState('');
+  const [joinCode, setJoinCode] = useState('');
+  const [roomCode, setRoomCode] = useState('');
+  const [role, setRole] = useState('');
+  const [roomData, setRoomData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [qIdx, setQIdx] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [answered, setAnswered] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(15);
+  const [myScore, setMyScore] = useState(0);
 
   const unsubRef = useRef(null);
   const timerRef = useRef(null);
@@ -71,7 +71,7 @@ export default function BattleScreen({ navigation }) {
 
   const handleCreate = async () => {
     if (!playerName.trim() || !topic.trim()) {
-      Alert.alert('Oops!', 'Apna naam aur topic dono likho.');
+      Alert.alert('Oops!', 'Enter both your name and the topic.');
       return;
     }
     setLoading(true);
@@ -87,7 +87,7 @@ export default function BattleScreen({ navigation }) {
       });
       setPhase(PHASE.WAITING);
     } catch (e) {
-      Alert.alert('Error', 'Room create nahi hua. Try again.');
+      Alert.alert('Error', 'Room was not created. Try again.');
     } finally {
       setLoading(false);
     }
@@ -95,7 +95,7 @@ export default function BattleScreen({ navigation }) {
 
   const handleJoin = async () => {
     if (!playerName.trim() || !joinCode.trim()) {
-      Alert.alert('Oops!', 'Naam aur room code dono chahiye.');
+      Alert.alert('Oops!', 'Both name and room code are required.');
       return;
     }
     setLoading(true);
@@ -109,7 +109,7 @@ export default function BattleScreen({ navigation }) {
       });
       setPhase(PHASE.BATTLE);
     } catch (e) {
-      Alert.alert('Error', e.message || 'Room nahi mila.');
+      Alert.alert('Error', e.message || 'Room not found.');
     } finally {
       setLoading(false);
     }
@@ -148,20 +148,24 @@ export default function BattleScreen({ navigation }) {
   if (phase === PHASE.LOBBY) return (
     <SafeAreaView style={s.root}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={theme.background} />
-      <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
-        <Text style={[s.backTxt, { color: theme.primary }]}>← Back</Text>
-      </TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.goBack()} style={s.backBtn}>
+  <Ionicons
+    name="arrow-back"
+    size={24}
+    color={theme.primary}
+  />
+</TouchableOpacity>
       <ScrollView contentContainerStyle={s.scroll}>
         <Text style={s.bigTitle}>⚔️ Battle Mode</Text>
         <Text style={[s.lobbyDesc, { color: theme.textMuted }]}>
-          Dost ke saath real-time quiz!{'\n'}Same topic, same time — sabse zyada score jita.
+          Real-time quiz with a friend!{'\n'}Same topic, same time — highest score wins.
         </Text>
 
-        <Text style={s.label}>Tumhara naam</Text>
-        <TextInput style={s.input} placeholder="Apna naam..." placeholderTextColor={theme.textMuted} value={playerName} onChangeText={setPlayerName} />
+        <Text style={s.label}>Name</Text>
+        <TextInput style={s.input} placeholder="Enter Your Name" placeholderTextColor={theme.textMuted} value={playerName} onChangeText={setPlayerName} />
 
         <View style={[s.section, { borderColor: theme.border }]}>
-          <Text style={s.sectionTitle}>Room banao</Text>
+          <Text style={s.sectionTitle}>Create Room</Text>
           <TextInput style={s.input} placeholder="Topic (e.g. Physics, History)" placeholderTextColor={theme.textMuted} value={topic} onChangeText={setTopic} />
           <TouchableOpacity style={[s.btn, { backgroundColor: theme.primary }]} onPress={handleCreate} disabled={loading}>
             {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnTxt}>Create Room →</Text>}
@@ -171,7 +175,7 @@ export default function BattleScreen({ navigation }) {
         <Text style={[s.orTxt, { color: theme.textMuted }]}>— ya —</Text>
 
         <View style={[s.section, { borderColor: theme.border }]}>
-          <Text style={s.sectionTitle}>Room join karo</Text>
+          <Text style={s.sectionTitle}>Join Room</Text>
           <TextInput style={[s.input, { letterSpacing: 4, textTransform: 'uppercase' }]} placeholder="Room code" placeholderTextColor={theme.textMuted} value={joinCode} onChangeText={t => setJoinCode(t.toUpperCase())} maxLength={6} autoCapitalize="characters" />
           <TouchableOpacity style={[s.btn, { backgroundColor: theme.secondary }]} onPress={handleJoin} disabled={loading}>
             {loading ? <ActivityIndicator color="#fff" /> : <Text style={s.btnTxt}>Join Battle →</Text>}
@@ -186,7 +190,7 @@ export default function BattleScreen({ navigation }) {
     <SafeAreaView style={[s.root, s.center]}>
       <Text style={{ fontSize: 48, marginBottom: 16 }}>⏳</Text>
       <Text style={s.waitTitle}>Room ready!</Text>
-      <Text style={[s.waitSub, { color: theme.textMuted }]}>Dost ko yeh code bhejo:</Text>
+      <Text style={[s.waitSub, { color: theme.textMuted }]}>Send this code to your friend:</Text>
       <TouchableOpacity
         style={[s.codeBox, { backgroundColor: theme.card, borderColor: theme.primary }]}
         onPress={() => { Clipboard.setString(roomCode); Alert.alert('Copied!', 'Room code copied!'); }}
@@ -196,7 +200,7 @@ export default function BattleScreen({ navigation }) {
       </TouchableOpacity>
       <ActivityIndicator color={theme.primary} style={{ marginTop: 24 }} />
       <Text style={[{ fontSize: 13, marginTop: 12 }, { color: theme.textMuted }]}>
-        Dost ke join hone ka wait kar raha hoon...
+        Waiting for my friend to join...
       </Text>
       <Text style={[{ fontSize: 14, fontWeight: '600', marginTop: 8 }, { color: theme.accent }]}>
         Topic: {topic}
@@ -210,7 +214,7 @@ export default function BattleScreen({ navigation }) {
     if (!questions.length) return null;
     const q = questions[qIdx];
     const opp = role === 'playerA' ? 'playerB' : 'playerA';
-    const me  = roomData[role];
+    const me = roomData[role];
     const oppData = roomData[opp];
 
     const getOptC = (opt) => {
@@ -270,15 +274,15 @@ export default function BattleScreen({ navigation }) {
 
   // ── RESULT ──
   if (phase === PHASE.RESULT && roomData) {
-    const aScore   = roomData.playerA?.score || 0;
-    const bScore   = roomData.playerB?.score || 0;
-    const myFinal  = role === 'playerA' ? aScore : bScore;
+    const aScore = roomData.playerA?.score || 0;
+    const bScore = roomData.playerB?.score || 0;
+    const myFinal = role === 'playerA' ? aScore : bScore;
     const oppFinal = role === 'playerA' ? bScore : aScore;
-    const oppName  = role === 'playerA' ? roomData.playerB?.name : roomData.playerA?.name;
-    const iWon     = myFinal > oppFinal;
-    const isDraw   = myFinal === oppFinal;
+    const oppName = role === 'playerA' ? roomData.playerB?.name : roomData.playerA?.name;
+    const iWon = myFinal > oppFinal;
+    const isDraw = myFinal === oppFinal;
 
-    useEffect(() => { deleteRoom(roomCode).catch(() => {}); }, []);
+    useEffect(() => { deleteRoom(roomCode).catch(() => { }); }, []);
 
     return (
       <SafeAreaView style={[s.root, s.center]}>
@@ -308,44 +312,48 @@ export default function BattleScreen({ navigation }) {
 }
 
 const makeStyles = (theme) => StyleSheet.create({
-  root       : { flex: 1, backgroundColor: theme.background },
-  scroll     : { paddingHorizontal: 20, paddingBottom: 20 },
-  center     : { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
-  backBtn    : { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 4 },
-  backTxt    : { fontSize: 16, fontWeight: '700' },
-  bigTitle   : { fontSize: 32, fontWeight: '800', color: theme.text, textAlign: 'center', marginBottom: 10 },
-  lobbyDesc  : { fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 },
-  label      : { fontSize: 13, fontWeight: '700', color: theme.textMuted, marginBottom: 6, marginTop: 4 },
-  input      : { backgroundColor: theme.card, borderRadius: 12, borderWidth: 1, borderColor: theme.border, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, color: theme.text, marginBottom: 10 },
-  section    : { borderWidth: 1, borderRadius: 16, padding: 16, marginBottom: 12 },
+  root: { flex: 1, backgroundColor: theme.background },
+  scroll: { paddingHorizontal: 20, paddingBottom: 20 },
+  center: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24 },
+  bigTitle: { fontSize: 32, fontWeight: '800', color: theme.text, textAlign: 'center', marginBottom: 10 },
+  lobbyDesc: { fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 },
+  label: { fontSize: 13, fontWeight: '700', color: theme.textMuted, marginBottom: 6, marginTop: 4 },
+  input: { backgroundColor: theme.card, borderRadius: 12, borderWidth: 1, borderColor: theme.border, paddingHorizontal: 14, paddingVertical: 12, fontSize: 15, color: theme.text, marginBottom: 10 },
+  section: { borderWidth: 1, borderRadius: 16, padding: 16, marginBottom: 12 },
   sectionTitle: { fontSize: 16, fontWeight: '700', color: theme.text, marginBottom: 12 },
-  btn        : { borderRadius: 14, paddingVertical: 14, alignItems: 'center', marginTop: 4 },
-  btnTxt     : { color: '#fff', fontSize: 15, fontWeight: '700' },
-  btnOut     : { borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1.5 },
-  btnOutTxt  : { fontSize: 14, fontWeight: '600' },
-  orTxt      : { textAlign: 'center', fontSize: 14, marginVertical: 8 },
-  waitTitle  : { fontSize: 24, fontWeight: '800', color: theme.text, marginBottom: 6 },
-  waitSub    : { fontSize: 14, marginBottom: 20 },
-  codeBox    : { borderRadius: 16, borderWidth: 2, paddingVertical: 20, paddingHorizontal: 40, alignItems: 'center' },
-  codeTxt    : { fontSize: 38, fontWeight: '900', letterSpacing: 8 },
-  scoreboard : { flexDirection: 'row', padding: 14, borderBottomWidth: 1, alignItems: 'center' },
-  scoreCol   : { flex: 2, alignItems: 'center' },
-  vsCol      : { flex: 1, alignItems: 'center' },
-  scoreName  : { fontSize: 13, fontWeight: '600', marginBottom: 2, maxWidth: 90 },
-  scoreNum   : { fontSize: 28, fontWeight: '800' },
-  vsTxt      : { fontSize: 20, fontWeight: '900' },
-  timerRing  : { alignSelf: 'center', width: 68, height: 68, borderRadius: 34, borderWidth: 3, justifyContent: 'center', alignItems: 'center', marginTop: 16, marginBottom: 16 },
-  timerNum   : { fontSize: 26, fontWeight: '800' },
-  question   : { fontSize: 18, fontWeight: '700', color: theme.text, lineHeight: 28, textAlign: 'center', marginBottom: 20 },
-  option     : { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1.5, padding: 14, marginBottom: 10 },
-  optLetter  : { width: 30, height: 30, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
+  btn: { borderRadius: 14, paddingVertical: 14, alignItems: 'center', marginTop: 4 },
+  btnTxt: { color: '#fff', fontSize: 15, fontWeight: '700' },
+  backBtn: {
+  paddingHorizontal: 20,
+  paddingTop: 16,
+  paddingBottom: 4,
+  alignSelf: 'flex-start',
+},
+  btnOut: { borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1.5 },
+  btnOutTxt: { fontSize: 14, fontWeight: '600' },
+  orTxt: { textAlign: 'center', fontSize: 14, marginVertical: 8 },
+  waitTitle: { fontSize: 24, fontWeight: '800', color: theme.text, marginBottom: 6 },
+  waitSub: { fontSize: 14, marginBottom: 20 },
+  codeBox: { borderRadius: 16, borderWidth: 2, paddingVertical: 20, paddingHorizontal: 40, alignItems: 'center' },
+  codeTxt: { fontSize: 38, fontWeight: '900', letterSpacing: 8 },
+  scoreboard: { flexDirection: 'row', padding: 14, borderBottomWidth: 1, alignItems: 'center' },
+  scoreCol: { flex: 2, alignItems: 'center' },
+  vsCol: { flex: 1, alignItems: 'center' },
+  scoreName: { fontSize: 13, fontWeight: '600', marginBottom: 2, maxWidth: 90 },
+  scoreNum: { fontSize: 28, fontWeight: '800' },
+  vsTxt: { fontSize: 20, fontWeight: '900' },
+  timerRing: { alignSelf: 'center', width: 68, height: 68, borderRadius: 34, borderWidth: 3, justifyContent: 'center', alignItems: 'center', marginTop: 16, marginBottom: 16 },
+  timerNum: { fontSize: 26, fontWeight: '800' },
+  question: { fontSize: 18, fontWeight: '700', color: theme.text, lineHeight: 28, textAlign: 'center', marginBottom: 20 },
+  option: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1.5, padding: 14, marginBottom: 10 },
+  optLetter: { width: 30, height: 30, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
   optLetterTxt: { fontSize: 13, fontWeight: '800' },
-  optTxt     : { flex: 1, fontSize: 15, lineHeight: 22 },
-  explBox    : { borderRadius: 12, borderWidth: 1, padding: 12, marginTop: 4 },
-  explTxt    : { fontSize: 13, lineHeight: 20 },
+  optTxt: { flex: 1, fontSize: 15, lineHeight: 22 },
+  explBox: { borderRadius: 12, borderWidth: 1, padding: 12, marginTop: 4 },
+  explTxt: { fontSize: 13, lineHeight: 20 },
   resultTitle: { fontSize: 28, fontWeight: '800', marginBottom: 20 },
-  resultBox  : { borderRadius: 16, borderWidth: 1, padding: 20, width: '100%' },
-  resultRow  : { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 8 },
-  rName      : { fontSize: 16, fontWeight: '600' },
-  rScore     : { fontSize: 22, fontWeight: '800' },
+  resultBox: { borderRadius: 16, borderWidth: 1, padding: 20, width: '100%' },
+  resultRow: { flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 8 },
+  rName: { fontSize: 16, fontWeight: '600' },
+  rScore: { fontSize: 22, fontWeight: '800' },
 });
