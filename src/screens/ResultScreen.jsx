@@ -13,10 +13,10 @@ export default function ResultScreen({ route, navigation }) {
   const { score, total, questions, topic, mood } = route.params;
 
   const maxScore = total * 30;
-  const percent  = Math.min(100, Math.round((score / maxScore) * 100));
-  const xp       = Math.floor(score * 1.5);
-  const medal    = percent >= 80 ? '🥇' : percent >= 50 ? '🥈' : '🥉';
-  const msg      = percent >= 80 ? 'Excellent! 🔥' : percent >= 50 ? 'Good Job! 👍' : 'Keep Going! 💪';
+  const percent = Math.min(100, Math.round((score / maxScore) * 100));
+  const xp = Math.floor(score * 1.5);
+  const medal = percent >= 80 ? '🥇' : percent >= 50 ? '🥈' : '🥉';
+  const msg = percent >= 80 ? 'Excellent! 🔥' : percent >= 50 ? 'Good Job! 👍' : 'Keep Going! 💪';
 
   useEffect(() => {
     const save = async () => {
@@ -25,7 +25,7 @@ export default function ResultScreen({ route, navigation }) {
         const arr = existing ? JSON.parse(existing) : [];
         arr.unshift({ topic, score, xp, percent, date: Date.now() });
         await AsyncStorage.setItem('bq_scores', JSON.stringify(arr.slice(0, 20)));
-      } catch (e) {}
+      } catch (e) { }
     };
     save();
   }, []);
@@ -98,29 +98,29 @@ export default function ResultScreen({ route, navigation }) {
 }
 
 const makeStyles = (theme) => StyleSheet.create({
-  root       : { flex: 1, backgroundColor: theme.background },
-  scroll     : { paddingHorizontal: 20, paddingBottom: 20, alignItems: 'center' },
-  medal      : { fontSize: 72, marginTop: 32, marginBottom: 4 },
-  msg        : { fontSize: 20, fontWeight: '700', color: theme.text, marginBottom: 4 },
-  scoreNum   : { fontSize: 52, fontWeight: '900', color: theme.primary, marginBottom: 12 },
-  xpBadge    : { borderRadius: 20, paddingHorizontal: 20, paddingVertical: 8, marginBottom: 22 },
-  xpTxt      : { fontSize: 16, fontWeight: '700' },
-  statsRow   : { flexDirection: 'row', gap: 10, marginBottom: 14, width: '100%' },
-  statBox    : { flex: 1, borderRadius: 14, borderWidth: 1, padding: 14, alignItems: 'center' },
-  statVal    : { fontSize: 22, fontWeight: '800', marginBottom: 2 },
-  statLbl    : { fontSize: 12 },
-  topicTag   : { fontSize: 13, marginBottom: 24 },
+  root: { flex: 1, backgroundColor: theme.background },
+  scroll: { paddingHorizontal: 20, paddingBottom: 20, alignItems: 'center' },
+  medal: { fontSize: 72, marginTop: 32, marginBottom: 4 },
+  msg: { fontSize: 20, fontWeight: '700', color: theme.text, marginBottom: 4 },
+  scoreNum: { fontSize: 52, fontWeight: '900', color: theme.primary, marginBottom: 12 },
+  xpBadge: { borderRadius: 20, paddingHorizontal: 20, paddingVertical: 8, marginBottom: 22 },
+  xpTxt: { fontSize: 16, fontWeight: '700' },
+  statsRow: { flexDirection: 'row', gap: 10, marginBottom: 14, width: '100%' },
+  statBox: { flex: 1, borderRadius: 14, borderWidth: 1, padding: 14, alignItems: 'center' },
+  statVal: { fontSize: 22, fontWeight: '800', marginBottom: 2 },
+  statLbl: { fontSize: 12 },
+  topicTag: { fontSize: 13, marginBottom: 24 },
   reviewTitle: { fontSize: 18, fontWeight: '700', color: theme.text, alignSelf: 'flex-start', marginBottom: 12 },
-  reviewCard : { width: '100%', borderRadius: 14, borderWidth: 1, padding: 14, marginBottom: 12 },
-  reviewTop  : { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, gap: 10 },
-  qBadge     : { borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 },
-  qNum       : { fontSize: 12, fontWeight: '700' },
-  reviewQ    : { flex: 1, fontSize: 14, fontWeight: '600', lineHeight: 20 },
-  correctRow : { borderRadius: 8, padding: 8, marginBottom: 8 },
-  correctTxt : { fontSize: 13, fontWeight: '700' },
-  expTxt     : { fontSize: 12, lineHeight: 18 },
-  btn        : { width: '100%', borderRadius: 14, paddingVertical: 15, alignItems: 'center', marginBottom: 10 },
-  btnTxt     : { color: '#fff', fontSize: 16, fontWeight: '700' },
-  btnOut     : { width: '100%', borderRadius: 14, paddingVertical: 14, alignItems: 'center', borderWidth: 1.5, marginBottom: 8 },
-  btnOutTxt  : { fontSize: 15, fontWeight: '600' },
+  reviewCard: { width: '100%', borderRadius: 14, borderWidth: 1, padding: 14, marginBottom: 12 },
+  reviewTop: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 10, gap: 10 },
+  qBadge: { borderRadius: 8, paddingHorizontal: 8, paddingVertical: 3 },
+  qNum: { fontSize: 12, fontWeight: '700' },
+  reviewQ: { flex: 1, fontSize: 14, fontWeight: '600', lineHeight: 20 },
+  correctRow: { borderRadius: 8, padding: 8, marginBottom: 8 },
+  correctTxt: { fontSize: 13, fontWeight: '700' },
+  expTxt: { fontSize: 12, lineHeight: 18 },
+  btn: { width: '100%', borderRadius: 14, paddingVertical: 15, alignItems: 'center', marginBottom: 10 },
+  btnTxt: { color: '#fff', fontSize: 16, fontWeight: '700' },
+  btnOut: { width: '100%', borderRadius: 14, paddingVertical: 14, alignItems: 'center', borderWidth: 1.5, marginBottom: 8 },
+  btnOutTxt: { fontSize: 15, fontWeight: '600' },
 });

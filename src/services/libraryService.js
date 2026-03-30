@@ -19,6 +19,7 @@ export const searchBooks = async (query) => {
     }));
   } catch (error) {
     console.error('Library error:', error);
+    
     return [];
   }
 };

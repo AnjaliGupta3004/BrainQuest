@@ -23,7 +23,7 @@ export default function HomeScreen({ navigation }) {
 
 
   useEffect(() => {
-    
+
   }, []);
   return (
     <SafeAreaView style={s.root}>

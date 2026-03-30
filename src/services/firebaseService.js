@@ -16,6 +16,7 @@ export const createRoom = async (roomCode, topic, questions, playerName) => {
       playerA  : { name: playerName, score: 0, answers: {}, done: false },
       playerB  : null,
     });
+    
 };
 
 export const joinRoom = async (roomCode, playerName) => {

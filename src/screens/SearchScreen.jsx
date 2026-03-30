@@ -43,7 +43,7 @@ export default function SearchScreen({ route, navigation }) {
       const questions = await generateQuiz(item.subject || item.title, mood.difficulty, mood.count);
       navigation.navigate('Quiz', { questions, topic: item.title, mood });
     } catch (e) {
-Alert.alert('Error', 'Quiz was not generated. Check your API key.');
+      Alert.alert('Error', 'Quiz was not generated. Check your API key.');
     } finally {
       setGenerating(false);
     }
@@ -171,11 +171,11 @@ const makeStyles = (theme) => StyleSheet.create({
   genTitle: { fontSize: 20, fontWeight: '700', color: theme.text, textAlign: 'center', marginTop: 16, marginBottom: 8 },
   genSub: { fontSize: 14, color: theme.textMuted, textAlign: 'center', marginBottom: 12 },
   genMood: { fontSize: 13, fontWeight: '600' },
-  backBtn: { 
-  padding: 8, 
-  borderRadius: 20,
-  backgroundColor: theme.card,
-  borderWidth: 1,
-  borderColor: theme.border,
-},
+  backBtn: {
+    padding: 8,
+    borderRadius: 20,
+    backgroundColor: theme.card,
+    borderWidth: 1,
+    borderColor: theme.border,
+  },
 });

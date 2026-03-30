@@ -11,15 +11,15 @@ export default function QuizScreen({ route, navigation }) {
   const { theme, isDark } = useTheme();
   const { questions, topic, mood } = route.params;
 
-  const [idx,      setIdx]      = useState(0);
-  const [score,    setScore]    = useState(0);
+  const [idx, setIdx] = useState(0);
+  const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answered, setAnswered] = useState(false);
   const [timeLeft, setTimeLeft] = useState(15);
 
   const progressAnim = useRef(new Animated.Value(0)).current;
-  const timerAnim    = useRef(new Animated.Value(1)).current;
-  const timerRef     = useRef(null);
+  const timerAnim = useRef(new Animated.Value(1)).current;
+  const timerRef = useRef(null);
 
   const q = questions[idx];
   const total = questions.length;
@@ -176,25 +176,25 @@ export default function QuizScreen({ route, navigation }) {
 }
 
 const makeStyles = (theme) => StyleSheet.create({
-  root       : { flex: 1, backgroundColor: theme.background },
-  scroll     : { paddingHorizontal: 20, paddingBottom: 20 },
-  progTrack  : { height: 5, backgroundColor: theme.border },
-  progFill   : { height: 5, backgroundColor: theme.primary, borderRadius: 5 },
-  topRow     : { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 16, marginBottom: 4 },
-  topicTag   : { borderRadius: 10, paddingHorizontal: 10, paddingVertical: 4, maxWidth: 180 },
-  topicTxt   : { fontSize: 12, fontWeight: '700' },
-  counter    : { fontSize: 13, fontWeight: '600' },
-  scoreTxt   : { textAlign: 'right', fontSize: 13, fontWeight: '700', marginBottom: 16 },
-  timerRing  : { alignSelf: 'center', width: 72, height: 72, borderRadius: 36, borderWidth: 3, justifyContent: 'center', alignItems: 'center', marginBottom: 10 },
-  timerNum   : { fontSize: 26, fontWeight: '800' },
-  timerBar   : { height: 4, borderRadius: 2, marginBottom: 22 },
+  root: { flex: 1, backgroundColor: theme.background },
+  scroll: { paddingHorizontal: 20, paddingBottom: 20 },
+  progTrack: { height: 5, backgroundColor: theme.border },
+  progFill: { height: 5, backgroundColor: theme.primary, borderRadius: 5 },
+  topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 16, marginBottom: 4 },
+  topicTag: { borderRadius: 10, paddingHorizontal: 10, paddingVertical: 4, maxWidth: 180 },
+  topicTxt: { fontSize: 12, fontWeight: '700' },
+  counter: { fontSize: 13, fontWeight: '600' },
+  scoreTxt: { textAlign: 'right', fontSize: 13, fontWeight: '700', marginBottom: 16 },
+  timerRing: { alignSelf: 'center', width: 72, height: 72, borderRadius: 36, borderWidth: 3, justifyContent: 'center', alignItems: 'center', marginBottom: 10 },
+  timerNum: { fontSize: 26, fontWeight: '800' },
+  timerBar: { height: 4, borderRadius: 2, marginBottom: 22 },
   timerBarFill: { height: 4, borderRadius: 2 },
-  question   : { fontSize: 19, fontWeight: '700', color: theme.text, lineHeight: 30, textAlign: 'center', marginBottom: 24 },
-  option     : { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1.5, padding: 14, marginBottom: 10 },
-  optLetter  : { width: 30, height: 30, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
+  question: { fontSize: 19, fontWeight: '700', color: theme.text, lineHeight: 30, textAlign: 'center', marginBottom: 24 },
+  option: { flexDirection: 'row', alignItems: 'center', borderRadius: 14, borderWidth: 1.5, padding: 14, marginBottom: 10 },
+  optLetter: { width: 30, height: 30, borderRadius: 8, justifyContent: 'center', alignItems: 'center', marginRight: 12 },
   optLetterTxt: { fontSize: 14, fontWeight: '800' },
-  optTxt     : { flex: 1, fontSize: 15, lineHeight: 22 },
-  explBox    : { borderRadius: 14, borderWidth: 1.5, padding: 14, marginTop: 4 },
-  explLabel  : { fontSize: 14, fontWeight: '700', marginBottom: 6 },
-  explTxt    : { fontSize: 13, lineHeight: 20 },
+  optTxt: { flex: 1, fontSize: 15, lineHeight: 22 },
+  explBox: { borderRadius: 14, borderWidth: 1.5, padding: 14, marginTop: 4 },
+  explLabel: { fontSize: 14, fontWeight: '700', marginBottom: 6 },
+  explTxt: { fontSize: 13, lineHeight: 20 },
 });
