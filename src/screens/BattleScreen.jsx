@@ -328,6 +328,7 @@ const makeStyles = (theme) => StyleSheet.create({
   paddingTop: 16,
   paddingBottom: 4,
   alignSelf: 'flex-start',
+  
 },
   btnOut: { borderRadius: 14, paddingVertical: 13, alignItems: 'center', borderWidth: 1.5 },
   btnOutTxt: { fontSize: 14, fontWeight: '600' },
