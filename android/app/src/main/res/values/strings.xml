@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BrainQuest</string>
+    <string name="app_name">Brain Quest</string>
         <string name="firebase_database_url">https://brainquest-e90a6-default-rtdb.firebaseio.com</string>
 
 </resources>

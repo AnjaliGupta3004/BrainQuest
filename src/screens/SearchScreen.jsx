@@ -68,7 +68,15 @@ export default function SearchScreen({ route, navigation }) {
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={theme.background} />
 
       <View style={s.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
+        <TouchableOpacity   onPress={() => {
+    if (navigation.canGoBack()) {
+      navigation.goBack();
+    } else {
+      navigation.navigate('Home');  // fallback
+    }
+  }}
+  // style={s.backBtn}
+  >
           <Ionicons
             name="arrow-back"
             size={24}

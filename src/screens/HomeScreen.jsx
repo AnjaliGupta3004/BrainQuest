@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,
+  View, Text, TouchableOpacity, StyleSheet, StatusBar, ScrollView,BackHandler
 } from 'react-native';
 import { useTheme } from '../constants/ThemeContext';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -21,7 +21,19 @@ export default function HomeScreen({ navigation }) {
   const mood = MOODS[moodIdx];
   const s = makeStyles(theme);
 
+useEffect(() => {
+  const backAction = () => {
+    BackHandler.exitApp();
+    return true;
+  };
 
+  const backHandler = BackHandler.addEventListener(
+    'hardwareBackPress',
+    backAction,
+  );
+
+  return () => backHandler.remove();
+}, []);
   useEffect(() => {
 
   }, []);
@@ -40,7 +52,7 @@ export default function HomeScreen({ navigation }) {
             <Text style={s.tagline}>Learn anything. Beat everyone.</Text>
           </View>
           <TouchableOpacity style={s.themeBtn} onPress={toggleTheme}>
-            <Text style={{ fontSize: 20 }}>{isDark ? '☀️' : '🌙'}</Text>
+            <Text style={{ fontSize: 18 }}>{isDark ? '☀️' : '🌙'}</Text>
           </TouchableOpacity>
         </View>
 
@@ -115,7 +127,7 @@ export default function HomeScreen({ navigation }) {
 
 
         <Text style={[s.footer, { color: theme.textMuted }]}>
-          Powered by Gemini AI + Open Library
+          Powered by GROQ AI + Open Library
         </Text>
       </ScrollView>
     </SafeAreaView>
@@ -128,7 +140,7 @@ const makeStyles = (theme) => StyleSheet.create({
   topBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: 20, marginBottom: 28 },
   logo: { fontSize: 30, fontWeight: '800', color: theme.primary },
   tagline: { fontSize: 13, color: theme.textMuted, marginTop: 2 },
-  themeBtn: { padding: 10, borderRadius: 22, backgroundColor: theme.card, borderWidth: 1, borderColor: theme.border },
+  themeBtn: { padding: 6, borderRadius: 20, backgroundColor: "transparent", },
   card: { backgroundColor: theme.card, borderRadius: 18, borderWidth: 1, borderColor: theme.border, padding: 20, marginBottom: 18 },
   cardTitle: { fontSize: 16, fontWeight: '700', color: theme.text, marginBottom: 4 },
   cardSub: { fontSize: 13, color: theme.textMuted, marginBottom: 18 },

@@ -10,6 +10,7 @@ import SearchScreen from './src/screens/SearchScreen';
 import QuizScreen   from './src/screens/QuizScreen';
 import BattleScreen from './src/screens/BattleScreen';
 import ResultScreen from './src/screens/ResultScreen';
+import SplashSceen from './src/screens/SplashScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,9 +19,10 @@ export default function App() {
     <ThemeProvider>
       <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Home"
+          initialRouteName="Splash"
           screenOptions={{ headerShown: false, animation: 'slide_from_right' }}
         >
+          <Stack.Screen name="Splash" component={SplashSceen}/>
           <Stack.Screen name="Home"   component={HomeScreen} />
           <Stack.Screen name="Search" component={SearchScreen} />
             <Stack.Screen name="Quiz"   component={QuizScreen} />
