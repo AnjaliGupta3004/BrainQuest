@@ -21,6 +21,7 @@ export default function HomeScreen({ navigation }) {
   const mood = MOODS[moodIdx];
   const s = makeStyles(theme);
 
+  
 useEffect(() => {
   const backAction = () => {
     BackHandler.exitApp();

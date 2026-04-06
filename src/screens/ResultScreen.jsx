@@ -15,6 +15,7 @@ export default function ResultScreen({ route, navigation }) {
   const maxScore = total * 30;
   const percent = Math.min(100, Math.round((score / maxScore) * 100));
   const xp = Math.floor(score * 1.5);
+  
   const medal = percent >= 80 ? '🥇' : percent >= 50 ? '🥈' : '🥉';
   const msg = percent >= 80 ? 'Excellent! 🔥' : percent >= 50 ? 'Good Job! 👍' : 'Keep Going! 💪';
 
