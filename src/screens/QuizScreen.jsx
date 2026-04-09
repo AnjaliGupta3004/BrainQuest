@@ -97,12 +97,14 @@ export default function QuizScreen({ route, navigation }) {
     <SafeAreaView style={s.root}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={theme.background} />
 
+
       {/* Progress bar */}
       <View style={s.progTrack}>
         <Animated.View style={[s.progFill, {
           width: progressAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }),
         }]} />
       </View>
+
 
       <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
 

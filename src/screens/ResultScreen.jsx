@@ -20,6 +20,7 @@ export default function ResultScreen({ route, navigation }) {
   const msg = percent >= 80 ? 'Excellent! 🔥' : percent >= 50 ? 'Good Job! 👍' : 'Keep Going! 💪';
 
   useEffect(() => {
+    
     const save = async () => {
       try {
         const existing = await AsyncStorage.getItem('bq_scores');
