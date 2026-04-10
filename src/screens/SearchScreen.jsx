@@ -72,6 +72,7 @@ export default function SearchScreen({ route, navigation }) {
     if (navigation.canGoBack()) {
       navigation.goBack();
     } else {
+      
       navigation.navigate('Home');  // fallback
     }
   }}

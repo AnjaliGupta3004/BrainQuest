@@ -21,6 +21,7 @@ export default function SplashScreen({ navigation }) {
     // Logo fade + slide up
     Animated.parallel([
       Animated.timing(fadeAnim, {
+        
         toValue: 1,
         duration: 700,
         useNativeDriver: true,

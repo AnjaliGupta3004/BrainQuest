@@ -19,6 +19,7 @@ export default function HomeScreen({ navigation }) {
   const { theme, isDark, toggleTheme } = useTheme();
   const [moodIdx, setMoodIdx] = useState(2);
   const mood = MOODS[moodIdx];
+  
   const s = makeStyles(theme);
 
   

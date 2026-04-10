@@ -326,6 +326,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {
   paddingHorizontal: 20,
   paddingTop: 16,
+  
   paddingBottom: 4,
   alignSelf: 'flex-start',
   

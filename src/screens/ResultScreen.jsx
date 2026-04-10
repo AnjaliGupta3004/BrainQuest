@@ -12,6 +12,7 @@ export default function ResultScreen({ route, navigation }) {
   const { theme, isDark } = useTheme();
   const { score, total, questions, topic, mood } = route.params;
 
+
   const maxScore = total * 30;
   const percent = Math.min(100, Math.round((score / maxScore) * 100));
   const xp = Math.floor(score * 1.5);
@@ -22,6 +23,7 @@ export default function ResultScreen({ route, navigation }) {
   useEffect(() => {
     
     const save = async () => {
+      
       try {
         const existing = await AsyncStorage.getItem('bq_scores');
         const arr = existing ? JSON.parse(existing) : [];
