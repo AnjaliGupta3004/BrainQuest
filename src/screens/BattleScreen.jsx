@@ -324,6 +324,7 @@ const makeStyles = (theme) => StyleSheet.create({
   btn: { borderRadius: 14, paddingVertical: 14, alignItems: 'center', marginTop: 4 },
   btnTxt: { color: '#fff', fontSize: 15, fontWeight: '700' },
   backBtn: {
+    
   paddingHorizontal: 20,
   paddingTop: 16,
   

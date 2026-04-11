@@ -106,6 +106,9 @@ export default function QuizScreen({ route, navigation }) {
       </View>
 
 
+      
+
+
       <ScrollView contentContainerStyle={s.scroll} showsVerticalScrollIndicator={false}>
 
         {/* Header */}

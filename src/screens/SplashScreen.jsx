@@ -12,6 +12,7 @@ export default function SplashScreen({ navigation }) {
   const barAnim    = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const slideAnim  = useRef(new Animated.Value(24)).current;
+
   const dot1Anim   = useRef(new Animated.Value(0.2)).current;
   const dot2Anim   = useRef(new Animated.Value(0.2)).current;
   const dot3Anim   = useRef(new Animated.Value(0.2)).current;
@@ -25,6 +26,7 @@ export default function SplashScreen({ navigation }) {
         toValue: 1,
         duration: 700,
         useNativeDriver: true,
+        
       }),
       Animated.timing(slideAnim, {
         toValue: 0,

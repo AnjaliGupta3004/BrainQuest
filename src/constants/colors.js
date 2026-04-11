@@ -13,6 +13,7 @@ export const PASTEL = {
   success    : '#27500A',
   successBg  : '#EAF3DE',
   danger     : '#A32D2D',
+
   dangerBg   : '#FCEBEB',
 };
 
@@ -22,6 +23,10 @@ export const NEON = {
   card       : '#1E1A35',
   cardAlt    : '#16141F',
   primary    : '#7F77DD',
+
+
+
+  
   secondary  : '#1D9E75',
   accent     : '#EF9F27',
   text       : '#EEEDFE',
