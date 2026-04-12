@@ -74,6 +74,7 @@ export default function SearchScreen({ route, navigation }) {
     } else {
       
       navigation.navigate('Home');  // fallback
+      
     }
   }}
   // style={s.backBtn}

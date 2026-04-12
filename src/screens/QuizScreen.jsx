@@ -139,6 +139,7 @@ export default function QuizScreen({ route, navigation }) {
         <Text style={s.question}>{q.question}</Text>
 
         {/* Options */}
+        
         {q.options.map((opt, i) => {
           const { bg, border, txt } = getOptColors(opt);
           return (
@@ -147,6 +148,7 @@ export default function QuizScreen({ route, navigation }) {
               style={[s.option, { backgroundColor: bg, borderColor: border }]}
               onPress={() => handleAnswer(opt)}
               disabled={answered}
+
               activeOpacity={0.8}
             >
               <View style={[s.optLetter, { backgroundColor: theme.secondary + '22' }]}>

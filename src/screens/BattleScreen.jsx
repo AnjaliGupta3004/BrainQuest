@@ -326,6 +326,7 @@ const makeStyles = (theme) => StyleSheet.create({
   backBtn: {
     
   paddingHorizontal: 20,
+
   paddingTop: 16,
   
   paddingBottom: 4,
@@ -344,6 +345,7 @@ const makeStyles = (theme) => StyleSheet.create({
   vsCol: { flex: 1, alignItems: 'center' },
   scoreName: { fontSize: 13, fontWeight: '600', marginBottom: 2, maxWidth: 90 },
   scoreNum: { fontSize: 28, fontWeight: '800' },
+  
   vsTxt: { fontSize: 20, fontWeight: '900' },
   timerRing: { alignSelf: 'center', width: 68, height: 68, borderRadius: 34, borderWidth: 3, justifyContent: 'center', alignItems: 'center', marginTop: 16, marginBottom: 16 },
   timerNum: { fontSize: 26, fontWeight: '800' },
