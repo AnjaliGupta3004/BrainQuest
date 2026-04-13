@@ -120,7 +120,9 @@ export default function SearchScreen({ route, navigation }) {
         </View>
       )}
 
+
       {searching && (
+
         <View style={s.center}>
           <ActivityIndicator color={theme.primary} size="large" />
           <Text style={[s.loadTxt, { color: theme.textMuted }]}>Searching Open Library...</Text>
@@ -141,6 +143,8 @@ export default function SearchScreen({ route, navigation }) {
               ? <Image source={{ uri: item.cover }} style={s.cover} resizeMode="cover" />
               : <View style={[s.coverPh, { backgroundColor: theme.secondary + '33' }]}><Text style={{ fontSize: 22 }}>📖</Text></View>
             }
+
+            
             <View style={s.cardRight}>
               <Text style={[s.cardTitle, { color: theme.text }]} numberOfLines={2}>{item.title}</Text>
               <Text style={[s.cardAuthor, { color: theme.textMuted }]}>{item.author}</Text>
